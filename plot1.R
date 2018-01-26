@@ -2,22 +2,16 @@
 ## reading data
 df <- read.table("household_power_consumption.txt"
                , header=T, sep=';' , na.strings="?"
-               # ,nrows=2075259
-               # , check.names=F
                , stringsAsFactors=F
-               # , comment.char=""
-               # , quote='\"'
                )
 
 ## data preparation
 # nrow(df)
 df$Date <- as.Date(df$Date, format = "%d/%m/%Y")
-str(df)
+# str(df)
 df2 <- df[ (df$Date >= "2007-02-01" & df$Date <= "2007-02-02") , ]
-nrow(df2)
+# nrow(df2)
 rm(df)
-dateandtime <- paste(as.Date(df2$Date), df2$Time)
-df2$Datetime <- as.POSIXct(dateandtime)
 
 ## Plot 1
 hist(df2$Global_active_power
